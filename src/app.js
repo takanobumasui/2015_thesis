@@ -178,14 +178,17 @@ function nodeVisual(n) {
   if (n.type !== 'plugin') {
     label = new SpriteText(n.name);
     label.color = style.labelColor;
-    label.textHeight = n.type === 'company' ? 4.2 : 3.4;
+    label.textHeight = n.type === 'company' ? 5.2 : 4.4;
     label.fontFace = 'Avenir Next, Helvetica Neue, Segoe UI, Hiragino Sans, sans-serif';
-    label.fontWeight = '500';
+    label.fontWeight = '600';
+    // dark outline keeps the text legible over glowing halos
+    label.strokeColor = 'rgba(4,5,9,0.9)';
+    label.strokeWidth = 1.6;
     label.material.transparent = true;
     label.material.opacity = style.labelOpacity;
     label.material.depthWrite = false;
     label.material.fog = false;
-    label.center.set(0.5, 1.7);
+    label.center.set(0.5, 1.55);
     group.add(label);
   }
 
@@ -199,16 +202,16 @@ function currentStyle(n) {
   const year = state.year;
   if (n.type === 'software') {
     const c = PALETTE[n.category] || PALETTE['3dcad'];
-    return { color: c, coreColor: c, coreScale: 7, haloScale: 24, labelColor: '#c8d2da', labelOpacity: 0.85 };
+    return { color: c, coreColor: c, coreScale: 7, haloScale: 24, labelColor: '#eef3f8', labelOpacity: 1 };
   }
   if (n.type === 'plugin') {
     return { color: PALETTE.plugin, coreColor: PALETTE.plugin, coreScale: 4.5, haloScale: 13, labelColor: '#9a93c9', labelOpacity: 0.6 };
   }
   // company
   if (n.status === 'absorbed' && n.absorbedYear != null && year >= n.absorbedYear) {
-    return { color: PALETTE.absorbed, coreColor: '#8a897f', coreScale: 4, haloScale: 10, labelColor: '#6f6e66', labelOpacity: 0.55 };
+    return { color: PALETTE.absorbed, coreColor: '#8a897f', coreScale: 4, haloScale: 10, labelColor: '#8d8b80', labelOpacity: 0.75 };
   }
-  return { color: PALETTE.companyHalo, coreColor: PALETTE.company, coreScale: 7.5, haloScale: 24, labelColor: '#efe9d6', labelOpacity: 0.95 };
+  return { color: PALETTE.companyHalo, coreColor: PALETTE.company, coreScale: 7.5, haloScale: 24, labelColor: '#f6f0dd', labelOpacity: 1 };
 }
 
 function applyStyles(nodes) {
@@ -260,9 +263,9 @@ function initGraph() {
   // --- bloom ---
   const bloom = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    0.9,    // strength
-    0.45,   // radius
-    0.08    // threshold: keep the dark background from washing out
+    0.7,    // strength: enough for glow, low enough to keep text edges crisp
+    0.4,    // radius
+    0.15    // threshold: keep the dark background from washing out
   );
   Graph.postProcessingComposer().addPass(bloom);
 
