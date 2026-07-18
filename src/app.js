@@ -178,16 +178,21 @@ function nodeVisual(n) {
   if (n.type !== 'plugin') {
     label = new SpriteText(n.name);
     label.color = style.labelColor;
-    label.textHeight = n.type === 'company' ? 5.2 : 4.4;
+    label.textHeight = style.labelHeight;
     label.fontFace = 'Avenir Next, Helvetica Neue, Segoe UI, Hiragino Sans, sans-serif';
-    label.fontWeight = '600';
-    // dark outline keeps the text legible over glowing halos
-    label.strokeColor = 'rgba(4,5,9,0.9)';
-    label.strokeWidth = 1.6;
+    label.fontWeight = '700';
+    label.fontSize = 220; // canvas render resolution - keeps strokes crisp up close
+    // solid dark plate + outline: text must survive additive bloom from nearby halos
+    label.backgroundColor = 'rgba(3,4,7,0.62)';
+    label.padding = 2.4;
+    label.borderRadius = 3;
+    label.strokeColor = 'rgba(2,3,6,0.95)';
+    label.strokeWidth = 3;
     label.material.transparent = true;
     label.material.opacity = style.labelOpacity;
     label.material.depthWrite = false;
     label.material.fog = false;
+    label.renderOrder = 999; // draw after (on top of) additive glow sprites
     label.center.set(0.5, 1.55);
     group.add(label);
   }
@@ -202,16 +207,18 @@ function currentStyle(n) {
   const year = state.year;
   if (n.type === 'software') {
     const c = PALETTE[n.category] || PALETTE['3dcad'];
-    return { color: c, coreColor: c, coreScale: 7, haloScale: 24, labelColor: '#eef3f8', labelOpacity: 1 };
+    return { color: c, coreColor: c, coreScale: 7, haloScale: 24, labelColor: '#eef3f8', labelOpacity: 1, labelHeight: 4.4 };
   }
   if (n.type === 'plugin') {
-    return { color: PALETTE.plugin, coreColor: PALETTE.plugin, coreScale: 4.5, haloScale: 13, labelColor: '#9a93c9', labelOpacity: 0.6 };
+    return { color: PALETTE.plugin, coreColor: PALETTE.plugin, coreScale: 4.5, haloScale: 13, labelColor: '#9a93c9', labelOpacity: 0.6, labelHeight: 3 };
   }
   // company
   if (n.status === 'absorbed' && n.absorbedYear != null && year >= n.absorbedYear) {
-    return { color: PALETTE.absorbed, coreColor: '#8a897f', coreScale: 4, haloScale: 10, labelColor: '#8d8b80', labelOpacity: 0.75 };
+    // smaller & dimmer: these are historical/minor entities, often with long
+    // legacy names, and shouldn't compete for space with the live companies
+    return { color: PALETTE.absorbed, coreColor: '#8a897f', coreScale: 4, haloScale: 10, labelColor: '#8d8b80', labelOpacity: 0.7, labelHeight: 2.6 };
   }
-  return { color: PALETTE.companyHalo, coreColor: PALETTE.company, coreScale: 7.5, haloScale: 24, labelColor: '#f6f0dd', labelOpacity: 1 };
+  return { color: PALETTE.companyHalo, coreColor: PALETTE.company, coreScale: 7.5, haloScale: 24, labelColor: '#f6f0dd', labelOpacity: 1, labelHeight: 5.2 };
 }
 
 function applyStyles(nodes) {
@@ -225,6 +232,7 @@ function applyStyles(nodes) {
     if (n.__label) {
       n.__label.color = s.labelColor;
       n.__label.material.opacity = s.labelOpacity;
+      if (n.__label.textHeight !== s.labelHeight) n.__label.textHeight = s.labelHeight;
     }
   });
 }
@@ -263,9 +271,9 @@ function initGraph() {
   // --- bloom ---
   const bloom = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    0.7,    // strength: enough for glow, low enough to keep text edges crisp
-    0.4,    // radius
-    0.15    // threshold: keep the dark background from washing out
+    0.55,   // strength: enough for glow, low enough to keep text edges crisp
+    0.35,   // radius
+    0.2     // threshold: keep the dark background from washing out
   );
   Graph.postProcessingComposer().addPass(bloom);
 
