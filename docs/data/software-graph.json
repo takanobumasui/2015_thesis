@@ -1,0 +1,1418 @@
+{
+  "nodes": [
+    {
+      "id": "adobe",
+      "name": "Adobe Systems",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "siemens_plm",
+      "name": "Siemens PLM Software",
+      "type": "company",
+      "status": "active",
+      "notes": "UGS(Unigraphics)を前身とする。本文では「現Siemens PLM Software」と表記。"
+    },
+    {
+      "id": "ptc",
+      "name": "PTC",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "dassault",
+      "name": "Dassault Systèmes",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "think3",
+      "name": "Think3",
+      "type": "company",
+      "status": "active",
+      "notes": "1979年設立のCadlab社（伊ボローニャ）が1998年に改称。"
+    },
+    {
+      "id": "trimble",
+      "name": "Trimble",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "graphisoft",
+      "name": "Graphisoft",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "bentley",
+      "name": "Bentley Systems",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "autodesk",
+      "name": "Autodesk",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "nemetschek_vw",
+      "name": "Nemetschek Vectorworks",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "fukui_computer",
+      "name": "福井コンピュータアーキテクト",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "autodessys",
+      "name": "AutoDesSys",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "altair",
+      "name": "Altair",
+      "type": "company",
+      "status": "active",
+      "notes": "solidThinking(Evolve/Inspire)を製品として展開。"
+    },
+    {
+      "id": "ansys",
+      "name": "ANSYS",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "mcneel",
+      "name": "Robert McNeel & Associates",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "maxon",
+      "name": "MAXON Computer",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "the_foundry",
+      "name": "The Foundry",
+      "type": "company",
+      "status": "active",
+      "notes": "2013年にLuxologyと合併。"
+    },
+    {
+      "id": "triple_squid",
+      "name": "Triple Squid Software Design",
+      "type": "company",
+      "status": "active",
+      "notes": null
+    },
+    {
+      "id": "jwcad_authors",
+      "name": "清水治郎・田中善文",
+      "type": "company",
+      "status": "active",
+      "notes": "Jw_cadの開発者個人。"
+    },
+    {
+      "id": "sdrc",
+      "name": "SDRC",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "I-deasの開発元。UGSに買収されNXの一部となる。"
+    },
+    {
+      "id": "intergraph",
+      "name": "Intergraph",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "Solid Edgeの開発元(1996)。1998年にUnigraphics社に事業売却。"
+    },
+    {
+      "id": "solidworks_inc",
+      "name": "SolidWorks社",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "1993年創立、1997年にDassault Systèmesと合併・子会社化。"
+    },
+    {
+      "id": "gehry_tech",
+      "name": "Gehry Technologies",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "2002年設立。2014年にTrimble社に買収。"
+    },
+    {
+      "id": "crs_revit",
+      "name": "Charles River Software / Revit Technology",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "1997年開発開始、2000年Revit Technology社に改称、2002年Autodeskが買収。"
+    },
+    {
+      "id": "last_software",
+      "name": "@Last Software",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "SketchUpの開発元。2006年にGoogleが買収。"
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "2006-2012年の間SketchUpを保有。2012年にTrimbleへ事業売却。"
+    },
+    {
+      "id": "alias",
+      "name": "Alias",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "MAYAの開発元(Alias PowerAnimator)。2005年にAutodeskが買収。"
+    },
+    {
+      "id": "spaceclaim_inc",
+      "name": "SpaceClaim Corporation",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "2005年設立。2014年にANSYSが買収。"
+    },
+    {
+      "id": "luxology",
+      "name": "Luxology",
+      "type": "company",
+      "status": "absorbed",
+      "notes": "MODOの開発元。2013年にThe Foundryと合併。"
+    },
+    {
+      "id": "illustrator",
+      "name": "Illustrator",
+      "type": "software",
+      "developer": "adobe",
+      "category": "2dcad",
+      "tags": [
+        "2dcad",
+        "vector graphics"
+      ],
+      "history": [
+        [
+          1987,
+          "Version1.0をMac版として販売開始"
+        ],
+        [
+          1997,
+          "Version7.0からWindows版も販売開始"
+        ],
+        [
+          2003,
+          "CSをリリース。PostScriptによる3Dモデリング機能が追加"
+        ],
+        [
+          2012,
+          "CS6をリリース。64bitに対応"
+        ],
+        [
+          2013,
+          "CCをリリース。クラウド機能を実装"
+        ]
+      ],
+      "plugins": [
+        "CADtools",
+        "CAD-COMPO"
+      ],
+      "notes": "建築業界では図面作成にも使用される描画ツール。"
+    },
+    {
+      "id": "nx",
+      "name": "NX",
+      "type": "software",
+      "developer": "siemens_plm",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "CAE",
+        "CAM",
+        "Parasolid"
+      ],
+      "history": [
+        [
+          1973,
+          "初版(Unigraphicsとして)"
+        ],
+        [
+          2001,
+          "SDRC社(I-deas)がUGS社(Unigraphics)に買収されたことをきっかけに、両者を統合したNXが誕生"
+        ],
+        [
+          2012,
+          "最新版NX8.5"
+        ]
+      ],
+      "plugins": [],
+      "notes": "2001年当時の4大ハイエンドCAD(CATIA V4,I-deas,Pro/ENGINEER,Unigraphics)のうち2つが統合して生まれた。"
+    },
+    {
+      "id": "solid_edge",
+      "name": "Solid Edge",
+      "type": "software",
+      "developer": "siemens_plm",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "Parasolid"
+      ],
+      "history": [
+        [
+          1996,
+          "Intergraph社(米)が初版リリース"
+        ],
+        [
+          1998,
+          "Unigraphics社に買収され、モデリングカーネルがACISからParasolidベースに"
+        ],
+        [
+          2008,
+          "SolidEdge STリリース"
+        ]
+      ],
+      "plugins": [],
+      "notes": null
+    },
+    {
+      "id": "creo",
+      "name": "PTC Creo Parametric",
+      "type": "software",
+      "developer": "ptc",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "CAE",
+        "CAM",
+        "Creo"
+      ],
+      "history": [
+        [
+          1987,
+          "初版(Pro/ENGINEER)リリース。導入が画期的に拡大"
+        ],
+        [
+          2005,
+          "以降10社を超える買収を行う"
+        ],
+        [
+          2010,
+          "PTC Creoと名称変更。Pro/ENGINEERはCreo Parametricという一製品に"
+        ]
+      ],
+      "plugins": [],
+      "notes": null
+    },
+    {
+      "id": "catia",
+      "name": "CATIA",
+      "type": "software",
+      "developer": "dassault",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "CAE",
+        "BIM",
+        "CAM",
+        "CGM"
+      ],
+      "history": [
+        [
+          1981,
+          "CATIA V1販売開始"
+        ],
+        [
+          1985,
+          "V2発表。航空業界でシェア拡大"
+        ],
+        [
+          1988,
+          "V3発表。UNIX対応、自動車業界でシェア拡大"
+        ],
+        [
+          1993,
+          "V4発表"
+        ],
+        [
+          1999,
+          "V5発表。パラメトリックに結びつけ可能に"
+        ],
+        [
+          2008,
+          "V6発表。チーム設計・コンカレント開発を強化"
+        ]
+      ],
+      "plugins": [],
+      "notes": null
+    },
+    {
+      "id": "solidworks",
+      "name": "SolidWorks",
+      "type": "software",
+      "developer": "dassault",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "CAE",
+        "CFD",
+        "CAM",
+        "Parasolid"
+      ],
+      "history": [
+        [
+          1993,
+          "SolidWorks社創立(Pro/Engineerのエンジニアがスピンオフ)"
+        ],
+        [
+          1995,
+          "SolidWorks95発売"
+        ],
+        [
+          1996,
+          "SolidWorks96発売"
+        ],
+        [
+          1997,
+          "Dassault Systèmesとの合併・子会社化"
+        ],
+        [
+          2014,
+          "最新版SolidWorks2014"
+        ]
+      ],
+      "plugins": [
+        "SolidWorks Simulation",
+        "SolidWorks Flow Simulation",
+        "SolidWorks Motion"
+      ],
+      "notes": null
+    },
+    {
+      "id": "thinkdesign",
+      "name": "ThinkDesign",
+      "type": "software",
+      "developer": "think3",
+      "category": "3dcad",
+      "tags": [
+        "3dcad"
+      ],
+      "history": [
+        [
+          1979,
+          "Cadlab社設立(伊ボローニャ)。機械設計支援ソフトを開発"
+        ],
+        [
+          1998,
+          "米サンタクララに本社移転、Think3に改名"
+        ],
+        [
+          1999,
+          "Thinkdesign(旧EurekaGold)発売"
+        ]
+      ],
+      "plugins": [
+        "Compensator",
+        "AMD"
+      ],
+      "notes": null
+    },
+    {
+      "id": "digitalproject",
+      "name": "DigitalProject",
+      "type": "software",
+      "developer": "gehry_tech",
+      "category": "bim",
+      "tags": [
+        "3dcad",
+        "BIM"
+      ],
+      "history": [
+        [
+          2002,
+          "Gehry Technologies社設立"
+        ],
+        [
+          2004,
+          "DigitalProject発売"
+        ],
+        [
+          2005,
+          "Dassault Systèmesと提携開始"
+        ],
+        [
+          2014,
+          "Trimble社がGehryTechnologiesを買収"
+        ]
+      ],
+      "plugins": [],
+      "notes": null
+    },
+    {
+      "id": "archicad",
+      "name": "ArchiCAD",
+      "type": "software",
+      "developer": "graphisoft",
+      "category": "bim",
+      "tags": [
+        "3dcad",
+        "BIM"
+      ],
+      "history": [
+        [
+          1982,
+          "開発開始(Mac用)"
+        ],
+        [
+          1984,
+          "ArchiCAD1.0リリース"
+        ],
+        [
+          2006,
+          "ArchiCAD10リリース"
+        ],
+        [
+          2014,
+          "ArchiCAD18リリース。Cinema4Dのレンダリングエンジンを搭載"
+        ]
+      ],
+      "plugins": [
+        "Cinema4Dアドオン",
+        "Google Earth Connections"
+      ],
+      "notes": null
+    },
+    {
+      "id": "microstation",
+      "name": "Microstation",
+      "type": "software",
+      "developer": "bentley",
+      "category": "bim",
+      "tags": [
+        "3dcad",
+        "BIM"
+      ],
+      "history": [
+        [
+          1985,
+          "PseudoStation1.0リリース"
+        ],
+        [
+          1987,
+          "MicroStation2.0リリース"
+        ],
+        [
+          2001,
+          "MicrostationV8リリース。DWG形式の入出力対応"
+        ],
+        [
+          2006,
+          "MicroStationV8 XM Editionリリース"
+        ]
+      ],
+      "plugins": [
+        "GenerativeComponents"
+      ],
+      "notes": null
+    },
+    {
+      "id": "revit",
+      "name": "Revit",
+      "type": "software",
+      "developer": "crs_revit",
+      "category": "bim",
+      "tags": [
+        "3dcad",
+        "BIM"
+      ],
+      "history": [
+        [
+          1997,
+          "Charles River Softwareによって開発開始"
+        ],
+        [
+          2000,
+          "Revit Technology社と改称"
+        ],
+        [
+          2002,
+          "Autodesk社が買収"
+        ],
+        [
+          2014,
+          "最新版Revit2015"
+        ]
+      ],
+      "plugins": [
+        "Dynamo"
+      ],
+      "notes": null
+    },
+    {
+      "id": "vectorworks",
+      "name": "Vectorworks",
+      "type": "software",
+      "developer": "nemetschek_vw",
+      "category": "bim",
+      "tags": [
+        "3dcad",
+        "BIM",
+        "2dcad"
+      ],
+      "history": [
+        [
+          1985,
+          "MINICAD1(Mac)リリース"
+        ],
+        [
+          1996,
+          "MINICAD6(Mac/Win)リリース"
+        ],
+        [
+          1998,
+          "VectorWorks8リリース"
+        ],
+        [
+          2014,
+          "最新版Vectorworks2014"
+        ]
+      ],
+      "plugins": [
+        "Camera Match 2014",
+        "A&A SHADOW",
+        "A&A VOLUME"
+      ],
+      "notes": null
+    },
+    {
+      "id": "sketchup",
+      "name": "SketchUp",
+      "type": "software",
+      "developer": "last_software",
+      "category": "3dcad",
+      "tags": [
+        "3dcad"
+      ],
+      "history": [
+        [
+          1999,
+          "@Last Software社が「3D for Everyone」を掲げ開発"
+        ],
+        [
+          2006,
+          "GoogleがLast Software社を買収。Google SketchUpが公開"
+        ],
+        [
+          2012,
+          "Trimble社がGoogleからSketchUpを購入・買収"
+        ],
+        [
+          2013,
+          "SketchUpPro2013/Make2013をリリース"
+        ]
+      ],
+      "plugins": [
+        "BezierSpline_v12"
+      ],
+      "notes": null
+    },
+    {
+      "id": "architrend",
+      "name": "ARCHITREND Z",
+      "type": "software",
+      "developer": "fukui_computer",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "2dcad"
+      ],
+      "history": [
+        [
+          1987,
+          "Archi-TREND販売開始"
+        ],
+        [
+          1990,
+          "Archi-TREND-11リリース"
+        ],
+        [
+          1996,
+          "ARCHITREND21リリース"
+        ],
+        [
+          2005,
+          "ARCHITREND Zリリース"
+        ]
+      ],
+      "plugins": [],
+      "notes": "日本国内の住宅設計における業務効率化機能が充実。"
+    },
+    {
+      "id": "inventor",
+      "name": "Inventor",
+      "type": "software",
+      "developer": "autodesk",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "ShapeManager"
+      ],
+      "history": [
+        [
+          1999,
+          "Version1.0販売開始"
+        ],
+        [
+          2001,
+          "Version5.0リリース"
+        ],
+        [
+          2005,
+          "Version10リリース。AutoCAD図面と完全対応"
+        ],
+        [
+          2014,
+          "Inventor2015リリース"
+        ]
+      ],
+      "plugins": [],
+      "notes": null
+    },
+    {
+      "id": "formz",
+      "name": "formZ",
+      "type": "software",
+      "developer": "autodessys",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "2dcad",
+        "ACIS"
+      ],
+      "history": [
+        [
+          1991,
+          "formZ1.0販売開始"
+        ],
+        [
+          2003,
+          "formZ4.0リリース。サードパーティ製プラグイン対応"
+        ],
+        [
+          2004,
+          "formZ5.0リリース"
+        ],
+        [
+          2012,
+          "formZ7.0リリース"
+        ]
+      ],
+      "plugins": [],
+      "notes": null
+    },
+    {
+      "id": "bonzai3d",
+      "name": "bonzai3d",
+      "type": "software",
+      "developer": "autodessys",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "ACIS"
+      ],
+      "history": [
+        [
+          2009,
+          "bonzai3d1.0販売開始"
+        ],
+        [
+          2010,
+          "bonzai3d2.0リリース"
+        ],
+        [
+          2013,
+          "bonzai3d3.0リリース"
+        ]
+      ],
+      "plugins": [],
+      "notes": "formZに比べ直感的操作が特徴。"
+    },
+    {
+      "id": "solidthinking",
+      "name": "solidThinking",
+      "type": "software",
+      "developer": "altair",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "optimization"
+      ],
+      "history": [
+        [
+          1991,
+          "Mazzardo兄弟とGuido Quaroni(Pixar技術ディレクター)が開発開始"
+        ],
+        [
+          1998,
+          "Win版リリース"
+        ],
+        [
+          2001,
+          "Mac版リリース"
+        ]
+      ],
+      "plugins": [],
+      "notes": "現在はEvolve(モデリング)とInspire(トポロジー最適化)の2製品を展開。"
+    },
+    {
+      "id": "spaceclaim",
+      "name": "SpaceClaim",
+      "type": "software",
+      "developer": "spaceclaim_inc",
+      "category": "3dcad",
+      "tags": [
+        "3dcad",
+        "ACIS"
+      ],
+      "history": [
+        [
+          2005,
+          "Mike Payneら(PTC,SolidWorksの創設者)がSpaceClaim Corporationを創設"
+        ],
+        [
+          2007,
+          "SpaceClaim2007リリース"
+        ],
+        [
+          2014,
+          "ANSYSがSpaceClaim社を買収"
+        ]
+      ],
+      "plugins": [],
+      "notes": null
+    },
+    {
+      "id": "rhino",
+      "name": "Rhinoceros",
+      "type": "software",
+      "developer": "mcneel",
+      "category": "3dcad",
+      "tags": [
+        "3dcad"
+      ],
+      "history": [
+        [
+          1992,
+          "船舶デザイン向けAutoCADプラグインとして開発開始"
+        ],
+        [
+          1994,
+          "ベータ版リリース"
+        ],
+        [
+          1998,
+          "Rhinoceros1.0リリース"
+        ],
+        [
+          2012,
+          "Rhinoceros5.0リリース"
+        ]
+      ],
+      "plugins": [
+        "Grasshopper",
+        "T-Splines",
+        "PanelingTools"
+      ],
+      "notes": null
+    },
+    {
+      "id": "3dsmax",
+      "name": "3ds Max",
+      "type": "software",
+      "developer": "autodesk",
+      "category": "3dcg",
+      "tags": [
+        "3dcg"
+      ],
+      "history": [
+        [
+          1990,
+          "3D studio1.0リリース(MS-DOS)"
+        ],
+        [
+          1996,
+          "3D Studio Max1.0リリース(Win)"
+        ],
+        [
+          2007,
+          "Autodesk 3ds Max2008リリース"
+        ],
+        [
+          2014,
+          "Autodesk 3ds Max2015リリース"
+        ]
+      ],
+      "plugins": [
+        "Power Translators Pro",
+        "Phoenix FD for 3ds Max"
+      ],
+      "notes": null
+    },
+    {
+      "id": "maya",
+      "name": "MAYA",
+      "type": "software",
+      "developer": "alias",
+      "category": "3dcg",
+      "tags": [
+        "3dcg"
+      ],
+      "history": [
+        [
+          1998,
+          "Alias PowerAnimator(現Alias社)がMAYAを発表"
+        ],
+        [
+          2005,
+          "Autodeskが買収"
+        ],
+        [
+          2006,
+          "MAYA8リリース。64bit対応"
+        ],
+        [
+          2014,
+          "最新版MAYA2015"
+        ]
+      ],
+      "plugins": [
+        "Miarmy3.0"
+      ],
+      "notes": null
+    },
+    {
+      "id": "cinema4d",
+      "name": "Cinema4D",
+      "type": "software",
+      "developer": "maxon",
+      "category": "3dcg",
+      "tags": [
+        "3dcg"
+      ],
+      "history": [
+        [
+          1993,
+          "Cinema4D V1リリース"
+        ],
+        [
+          1996,
+          "V4リリース(Win/Mac)"
+        ],
+        [
+          2013,
+          "Cinema4D R15リリース。AfterEffects CCのCINEWAREに対応"
+        ]
+      ],
+      "plugins": [],
+      "notes": "Allplan, ArchiCAD, Vectorworksとレンダリング連携が可能。"
+    },
+    {
+      "id": "modo",
+      "name": "MODO",
+      "type": "software",
+      "developer": "luxology",
+      "category": "3dcg",
+      "tags": [
+        "3dcg"
+      ],
+      "history": [
+        [
+          2004,
+          "Lightwave初期開発スタッフが中心となりmodo101をリリース"
+        ],
+        [
+          2007,
+          "modo301リリース(現在の骨格が完成)"
+        ],
+        [
+          2013,
+          "MODO601リリース。The Foundry社と合併し名称を大文字に変更"
+        ],
+        [
+          2014,
+          "最新版MODO801"
+        ]
+      ],
+      "plugins": [
+        "MeshFusion for MODO",
+        "Power SubD-NURBS"
+      ],
+      "notes": null
+    },
+    {
+      "id": "moi3d",
+      "name": "MOI3D",
+      "type": "software",
+      "developer": "triple_squid",
+      "category": "3dcg",
+      "tags": [
+        "3dcg"
+      ],
+      "history": [
+        [
+          2003,
+          "MOI3D1.0リリース"
+        ],
+        [
+          2010,
+          "MOI3D2.0リリース"
+        ]
+      ],
+      "plugins": [],
+      "notes": "開発者Michael GibsonはRhino開発元(1993-99)とMicrosoft(99-2003)出身。"
+    },
+    {
+      "id": "autocad",
+      "name": "AutoCAD",
+      "type": "software",
+      "developer": "autodesk",
+      "category": "2dcad",
+      "tags": [
+        "2dcad"
+      ],
+      "history": [
+        [
+          1982,
+          "version1.0をリリース"
+        ],
+        [
+          1988,
+          "version10をリリース"
+        ],
+        [
+          1999,
+          "AutoCAD2000リリース"
+        ],
+        [
+          2010,
+          "AutoCAD2011リリース。Mac用も"
+        ],
+        [
+          2014,
+          "AutoCAD2015リリース"
+        ]
+      ],
+      "plugins": [
+        "3D Stretch"
+      ],
+      "notes": null
+    },
+    {
+      "id": "draftsight",
+      "name": "DraftSight",
+      "type": "software",
+      "developer": "dassault",
+      "category": "2dcad",
+      "tags": [
+        "2dcad"
+      ],
+      "history": [
+        [
+          2010,
+          "ベータ版(Win/Mac)公開"
+        ],
+        [
+          2011,
+          "初版リリース(Win)。ベータ版(Linux)公開"
+        ]
+      ],
+      "plugins": [],
+      "notes": "無償の2DCADソフト。AutoCADのDWG形式に対応。"
+    },
+    {
+      "id": "jwcad",
+      "name": "Jw_cad",
+      "type": "software",
+      "developer": "jwcad_authors",
+      "category": "2dcad",
+      "tags": [
+        "2dcad"
+      ],
+      "history": [
+        [
+          1991,
+          "Jw_cad(DOS)リリース"
+        ],
+        [
+          1997,
+          "Jw_cad(Win)リリース"
+        ],
+        [
+          1999,
+          "DOS版開発終了。以後Win版に移行"
+        ]
+      ],
+      "plugins": [],
+      "notes": "フリーウェア。日本の建築設計で広く使われる2次元汎用CAD。"
+    },
+    {
+      "id": "grasshopper",
+      "name": "Grasshopper",
+      "type": "plugin",
+      "notes": "Rhinocerosのビジュアルプログラミング・プラグイン。パラメトリックデザインの標準ツール。"
+    },
+    {
+      "id": "dynamo",
+      "name": "Dynamo",
+      "type": "plugin",
+      "notes": "Revitのノード形式ビジュアルプログラミング拡張。"
+    },
+    {
+      "id": "generative_components",
+      "name": "GenerativeComponents",
+      "type": "plugin",
+      "notes": "Microstationの設計意図とジオメトリを関連付けるCADツール。"
+    }
+  ],
+  "links": [
+    {
+      "source": "adobe",
+      "target": "illustrator",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "siemens_plm",
+      "target": "nx",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "siemens_plm",
+      "target": "solid_edge",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "ptc",
+      "target": "creo",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "dassault",
+      "target": "catia",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "solidworks_inc",
+      "target": "solidworks",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "think3",
+      "target": "thinkdesign",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "gehry_tech",
+      "target": "digitalproject",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "graphisoft",
+      "target": "archicad",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "bentley",
+      "target": "microstation",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "crs_revit",
+      "target": "revit",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "nemetschek_vw",
+      "target": "vectorworks",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "last_software",
+      "target": "sketchup",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "fukui_computer",
+      "target": "architrend",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "autodesk",
+      "target": "inventor",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "autodessys",
+      "target": "formz",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "autodessys",
+      "target": "bonzai3d",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "altair",
+      "target": "solidthinking",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "spaceclaim_inc",
+      "target": "spaceclaim",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "mcneel",
+      "target": "rhino",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "autodesk",
+      "target": "3dsmax",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "alias",
+      "target": "maya",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "maxon",
+      "target": "cinema4d",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "luxology",
+      "target": "modo",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "triple_squid",
+      "target": "moi3d",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "autodesk",
+      "target": "autocad",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "dassault",
+      "target": "draftsight",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "jwcad_authors",
+      "target": "jwcad",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "intergraph",
+      "target": "solid_edge",
+      "type": "develops",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "siemens_plm",
+      "target": "sdrc",
+      "type": "acquires",
+      "year": 2001,
+      "label": "UGS(現Siemens PLM Software)がSDRC(I-deas)を買収。両者を統合しNXが誕生"
+    },
+    {
+      "source": "siemens_plm",
+      "target": "intergraph",
+      "type": "acquires",
+      "year": 1998,
+      "label": "UGS(現Siemens PLM Software)がSolid Edge事業をIntergraphから取得"
+    },
+    {
+      "source": "dassault",
+      "target": "solidworks_inc",
+      "type": "acquires",
+      "year": 1997,
+      "label": "Dassault SystèmesがSolidWorks社を子会社化"
+    },
+    {
+      "source": "trimble",
+      "target": "gehry_tech",
+      "type": "acquires",
+      "year": 2014,
+      "label": "Trimble社がGehry Technologiesを買収"
+    },
+    {
+      "source": "gehry_tech",
+      "target": "dassault",
+      "type": "partners",
+      "year": 2005,
+      "label": "Gehry TechnologiesとDassault Systèmesが提携開始"
+    },
+    {
+      "source": "autodesk",
+      "target": "crs_revit",
+      "type": "acquires",
+      "year": 2002,
+      "label": "AutodeskがRevit Technology社を買収"
+    },
+    {
+      "source": "google",
+      "target": "last_software",
+      "type": "acquires",
+      "year": 2006,
+      "label": "Googleが@Last Softwareを買収。Google SketchUpに"
+    },
+    {
+      "source": "trimble",
+      "target": "google",
+      "type": "acquires",
+      "year": 2012,
+      "label": "Trimble社がGoogleからSketchUp事業を購入"
+    },
+    {
+      "source": "autodesk",
+      "target": "alias",
+      "type": "acquires",
+      "year": 2005,
+      "label": "AutodeskがAlias社を買収。MAYAがAutodesk製品に"
+    },
+    {
+      "source": "ansys",
+      "target": "spaceclaim_inc",
+      "type": "acquires",
+      "year": 2014,
+      "label": "ANSYSがSpaceClaim社を買収"
+    },
+    {
+      "source": "the_foundry",
+      "target": "luxology",
+      "type": "acquires",
+      "year": 2013,
+      "label": "The FoundryがLuxologyと合併。MODOに改称"
+    },
+    {
+      "source": "rhino",
+      "target": "grasshopper",
+      "type": "plugin_of",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "revit",
+      "target": "dynamo",
+      "type": "plugin_of",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "microstation",
+      "target": "generative_components",
+      "type": "plugin_of",
+      "year": null,
+      "label": null
+    },
+    {
+      "source": "archicad",
+      "target": "cinema4d",
+      "type": "integrates",
+      "year": 2014,
+      "label": "ArchiCAD18からCinema4Dのレンダリングエンジンを搭載"
+    }
+  ],
+  "category_colors": {
+    "2dcad": "#3987e5",
+    "3dcad": "#008300",
+    "3dcg": "#d55181",
+    "bim": "#c98500"
+  },
+  "company_color": "#c3c2b7",
+  "absorbed_color": "#5a594f",
+  "plugin_color": "#9085e9"
+}
