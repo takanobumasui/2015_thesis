@@ -11,10 +11,12 @@
 <body>
 
 <div id="graph"></div>
+<div id="vignette"></div>
 
 <header id="app-header">
+  <p class="eyebrow">Genealogy of Architectural CAD / CG Software, 1970s–2014</p>
   <h1>建築CAD / CGソフトウェア系譜</h1>
-  <p class="subtitle">1970s–2014年、企業の買収・提携がソフトウェアをどう塗り替えてきたか</p>
+  <p class="subtitle">企業の買収・提携がソフトウェアの地図をどう塗り替えてきたか</p>
 </header>
 
 <button id="info-toggle" aria-label="このサイトについて">?</button>
@@ -23,9 +25,9 @@
   <button id="about-close" aria-label="閉じる">×</button>
   <h2>このサイトについて</h2>
   <p>2015年度卒業論文『建築デザインとコンピューター発展の関係 ─『建築雑誌』の記事分析を通して』の資料編「現代における代表的CAD,CGソフトウェア」をもとに構成した、ソフトウェア28本・企業/組織29・プラグイン3の関係ネットワークです。</p>
-  <p>ノードは企業がソフトウェアを開発した関係（develops）、企業が別の企業やソフトウェアを買収した関係（acquires）などのリンクで結ばれています。下部のタイムラインを動かすと、その年までに存在した勢力図が再生されます。</p>
+  <p>光の粒がソフトウェアと企業、それらを結ぶ糸が開発・買収・提携の関係を表します。下部のタイムラインを動かすと、その年までに存在した勢力図が再生されます。</p>
   <p class="hint">操作：ドラッグで回転 / ホイールでズーム / ノードをクリックで詳細表示</p>
-  <p class="hint">3D描画には <a href="https://github.com/vasturiano/3d-force-graph" target="_blank" rel="noopener" style="color:inherit">3d-force-graph</a>（MIT License）を使用しています。</p>
+  <p class="hint">3D描画には <a href="https://threejs.org/" target="_blank" rel="noopener">three.js</a> と <a href="https://github.com/vasturiano/3d-force-graph" target="_blank" rel="noopener">3d-force-graph</a>（いずれもMIT License）を使用しています。</p>
 </div>
 
 <aside id="info-panel" class="hidden">
@@ -40,19 +42,17 @@
     <span id="year-label">2014</span>
   </div>
   <div id="filter-row">
-    <span class="filter-label">表示：</span>
-    <button class="chip" data-tag="2dcad" style="--chip-color:#3987e5">2D CAD</button>
-    <button class="chip" data-tag="3dcad" style="--chip-color:#008300">3D CAD</button>
-    <button class="chip" data-tag="3dcg" style="--chip-color:#d55181">3D CG</button>
-    <button class="chip" data-tag="bim" style="--chip-color:#c98500">BIM</button>
-    <button class="chip" data-tag="company" style="--chip-color:#c3c2b7">企業</button>
-    <button class="chip" data-tag="acquires" style="--chip-color:#e66767">買収</button>
+    <button class="chip" data-tag="2dcad" style="--chip-color:#5aa7ff">2D CAD</button>
+    <button class="chip" data-tag="3dcad" style="--chip-color:#41e6a4">3D CAD</button>
+    <button class="chip" data-tag="3dcg" style="--chip-color:#ff6fb3">3D CG</button>
+    <button class="chip" data-tag="bim" style="--chip-color:#ffc45e">BIM</button>
+    <button class="chip" data-tag="company" style="--chip-color:#f4f1e6">企業</button>
+    <button class="chip" data-tag="acquires" style="--chip-color:#ff5d5d">買収</button>
   </div>
 </footer>
 
 <div id="loading">読み込み中…</div>
 
-<script src="vendor/3d-force-graph.min.js"></script>
-<script src="main.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

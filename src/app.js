@@ -1,6 +1,29 @@
 /* 建築CAD/CGソフトウェア系譜 3Dネットワーク
  * データ元：2015年度卒業論文『建築デザインとコンピューター発展の関係』資料編
+ *
+ * 表現方針：発光する微粒子＋細いフィラメントの集合として描く。
+ * ノードは「小さな光の芯＋柔らかいハロー」のスプライト、
+ * リンクは低不透明度の細線、全体にブルームとフォグをかける。
  */
+import ForceGraph3D from '3d-force-graph';
+import * as THREE from 'three';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import SpriteText from 'three-spritetext';
+
+const PALETTE = {
+  '2dcad': '#5aa7ff',
+  '3dcad': '#41e6a4',
+  '3dcg': '#ff6fb3',
+  'bim': '#ffc45e',
+  plugin: '#a99df5',
+  company: '#f4f1e6',
+  companyHalo: '#cfd8e8',
+  absorbed: '#5d5c55',
+  linkDevelops: '#7f96ad',
+  linkAcquires: '#ff5d5d',
+  linkPartners: '#3fd6a0',
+  linkIntegrates: '#a99df5',
+};
 
 const state = {
   data: null,
@@ -28,6 +51,42 @@ const els = {
 
 let Graph = null;
 
+// ---------- glow sprite textures ----------
+function makeGlowTexture(innerStop, midStop) {
+  const size = 128;
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  g.addColorStop(0, 'rgba(255,255,255,1)');
+  g.addColorStop(innerStop, 'rgba(255,255,255,0.55)');
+  g.addColorStop(midStop, 'rgba(255,255,255,0.12)');
+  g.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+const coreTexture = makeGlowTexture(0.18, 0.42);
+const haloTexture = makeGlowTexture(0.05, 0.22);
+
+function makeSprite(texture, color, scale, opacity) {
+  const mat = new THREE.SpriteMaterial({
+    map: texture,
+    color: new THREE.Color(color),
+    transparent: true,
+    opacity,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    fog: false, // keep node glow bright regardless of camera distance
+  });
+  const sprite = new THREE.Sprite(mat);
+  sprite.scale.set(scale, scale, 1);
+  return sprite;
+}
+
+// ---------- data load ----------
 fetch('data/software-graph.json')
   .then(r => r.json())
   .then(json => {
@@ -51,7 +110,7 @@ fetch('data/software-graph.json')
     console.error(err);
   });
 
-// ---------- meta computation (appear year / absorbed year) ----------
+// ---------- meta computation ----------
 function computeMeta(data) {
   const byId = new Map(data.nodes.map(n => [n.id, n]));
 
@@ -99,59 +158,170 @@ function computeMeta(data) {
   });
 
   data._byId = byId;
-  // 3d-force-graph mutates link.source/target from id strings into node object
-  // references in place once passed to graphData(). Keep a pristine copy with
-  // plain string ids for lookups (info panel, tooltips) that survives re-renders.
+  // 3d-force-graph mutates link.source/target into object references once
+  // rendered; keep a pristine string-id copy for lookups and re-filtering.
   data._linksPristine = data.links.map(l => ({ ...l }));
   return data;
+}
+
+// ---------- node visual construction ----------
+function nodeVisual(n) {
+  const group = new THREE.Group();
+  const style = currentStyle(n);
+
+  const halo = makeSprite(haloTexture, style.color, style.haloScale, 0.85);
+  const core = makeSprite(coreTexture, style.coreColor, style.coreScale, 1.0);
+  group.add(halo);
+  group.add(core);
+
+  let label = null;
+  if (n.type !== 'plugin') {
+    label = new SpriteText(n.name);
+    label.color = style.labelColor;
+    label.textHeight = n.type === 'company' ? 4.2 : 3.4;
+    label.fontFace = 'Avenir Next, Helvetica Neue, Segoe UI, Hiragino Sans, sans-serif';
+    label.fontWeight = '500';
+    label.material.transparent = true;
+    label.material.opacity = style.labelOpacity;
+    label.material.depthWrite = false;
+    label.material.fog = false;
+    label.center.set(0.5, 1.7);
+    group.add(label);
+  }
+
+  n.__halo = halo;
+  n.__core = core;
+  n.__label = label;
+  return group;
+}
+
+function currentStyle(n) {
+  const year = state.year;
+  if (n.type === 'software') {
+    const c = PALETTE[n.category] || PALETTE['3dcad'];
+    return { color: c, coreColor: c, coreScale: 7, haloScale: 24, labelColor: '#c8d2da', labelOpacity: 0.85 };
+  }
+  if (n.type === 'plugin') {
+    return { color: PALETTE.plugin, coreColor: PALETTE.plugin, coreScale: 4.5, haloScale: 13, labelColor: '#9a93c9', labelOpacity: 0.6 };
+  }
+  // company
+  if (n.status === 'absorbed' && n.absorbedYear != null && year >= n.absorbedYear) {
+    return { color: PALETTE.absorbed, coreColor: '#8a897f', coreScale: 4, haloScale: 10, labelColor: '#6f6e66', labelOpacity: 0.55 };
+  }
+  return { color: PALETTE.companyHalo, coreColor: PALETTE.company, coreScale: 7.5, haloScale: 24, labelColor: '#efe9d6', labelOpacity: 0.95 };
+}
+
+function applyStyles(nodes) {
+  nodes.forEach(n => {
+    if (!n.__core) return;
+    const s = currentStyle(n);
+    n.__core.material.color.set(s.coreColor);
+    n.__core.scale.set(s.coreScale, s.coreScale, 1);
+    n.__halo.material.color.set(s.color);
+    n.__halo.scale.set(s.haloScale, s.haloScale, 1);
+    if (n.__label) {
+      n.__label.color = s.labelColor;
+      n.__label.material.opacity = s.labelOpacity;
+    }
+  });
 }
 
 // ---------- graph init ----------
 function initGraph() {
   Graph = ForceGraph3D()(document.getElementById('graph'))
-    .backgroundColor('#0d0d0d')
+    .backgroundColor('#05060a')
     .showNavInfo(false)
-    .nodeRelSize(4.2)
-    .nodeResolution(16)
-    .nodeOpacity(0.95)
+    .nodeThreeObject(nodeVisual)
     .nodeLabel(nodeTooltip)
-    .nodeColor(n => n.__color)
-    .nodeVal(n => n.__val)
     .linkColor(l => linkColor(l))
-    .linkWidth(l => (l.type === 'acquires' ? 1.6 : l.type === 'partners' ? 1.1 : 0.6))
-    .linkOpacity(0.45)
-    .linkCurvature(0.12)
-    .linkDirectionalParticles(l => (l.type === 'acquires' ? 3 : l.type === 'integrates' ? 2 : 0))
-    .linkDirectionalParticleWidth(1.6)
-    .linkDirectionalParticleSpeed(0.006)
+    .linkWidth(0)                    // width 0 -> plain THREE.Line (thin filament)
+    .linkOpacity(0.5)
+    .linkCurvature(0.18)
+    .linkDirectionalParticles(l => (l.type === 'acquires' ? 4 : l.type === 'integrates' ? 2 : 0))
+    .linkDirectionalParticleWidth(1.4)
+    .linkDirectionalParticleSpeed(0.0045)
     .linkDirectionalParticleColor(l => linkColor(l))
     .enableNodeDrag(false)
     .onNodeClick(handleNodeClick)
-    .onNodeHover(n => {
-      document.body.style.cursor = n ? 'pointer' : 'default';
-    })
+    .onNodeHover(n => { document.body.style.cursor = n ? 'pointer' : 'default'; })
     .onBackgroundClick(() => closeInfo());
 
   const chargeForce = Graph.d3Force('charge');
-  if (chargeForce) chargeForce.strength(-45);
+  if (chargeForce) chargeForce.strength(-60);
   const linkForce = Graph.d3Force('link');
-  if (linkForce) linkForce.distance(l => (l.type === 'develops' ? 26 : l.type === 'acquires' ? 36 : 30));
-  // disconnected clusters (e.g. Jw_cad, Illustrator) have nothing pulling them
-  // toward the rest of the graph; add a gentle gravity well so everything
-  // stays in one visible cloud instead of drifting apart indefinitely.
-  Graph.d3Force('radial', radialGravity(0.045));
+  if (linkForce) linkForce.distance(l => (l.type === 'develops' ? 34 : l.type === 'acquires' ? 48 : 40));
+  Graph.d3Force('radial', radialGravity(0.05));
+
+  // --- atmosphere: fog + dust particles ---
+  const scene = Graph.scene();
+  scene.fog = new THREE.FogExp2(0x05060a, 0.0011);
+  scene.add(makeDust());
+
+  // --- bloom ---
+  const bloom = new UnrealBloomPass(
+    new THREE.Vector2(window.innerWidth, window.innerHeight),
+    0.9,    // strength
+    0.45,   // radius
+    0.08    // threshold: keep the dark background from washing out
+  );
+  Graph.postProcessingComposer().addPass(bloom);
+
+  // --- cinematic slow rotation, paused while the user interacts ---
+  const controls = Graph.controls();
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.45;
+  let idleTimer = null;
+  controls.addEventListener('start', () => {
+    controls.autoRotate = false;
+    clearTimeout(idleTimer);
+  });
+  controls.addEventListener('end', () => {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => { controls.autoRotate = true; }, 9000);
+  });
 
   let hasFit = false;
   Graph.onEngineStop(() => {
     if (!hasFit) {
       hasFit = true;
-      Graph.zoomToFit(800, 40);
+      Graph.zoomToFit(1200, 10);
     }
   });
 
   window.addEventListener('resize', () => {
     Graph.width(window.innerWidth).height(window.innerHeight);
+    bloom.setSize(window.innerWidth, window.innerHeight);
   });
+
+  // console access for the curious
+  window.GRAPH = Graph;
+}
+
+function makeDust() {
+  const count = 700;
+  const positions = new Float32Array(count * 3);
+  for (let i = 0; i < count; i++) {
+    // uniform-ish in a large sphere shell so dust surrounds the graph
+    const r = 240 + Math.random() * 520;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const mat = new THREE.PointsMaterial({
+    size: 0.9,
+    map: coreTexture,
+    color: 0x2c3a55,
+    transparent: true,
+    opacity: 0.16,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    sizeAttenuation: true,
+  });
+  return new THREE.Points(geo, mat);
 }
 
 function radialGravity(strength) {
@@ -169,11 +339,11 @@ function radialGravity(strength) {
 
 function linkColor(l) {
   switch (l.type) {
-    case 'acquires': return '#e66767';
-    case 'partners': return '#199e70';
-    case 'integrates': return '#9085e9';
-    case 'plugin_of': return '#9085e9';
-    default: return 'rgba(195,194,183,0.55)'; // develops
+    case 'acquires': return PALETTE.linkAcquires;
+    case 'partners': return PALETTE.linkPartners;
+    case 'integrates': return PALETTE.linkIntegrates;
+    case 'plugin_of': return PALETTE.linkIntegrates;
+    default: return PALETTE.linkDevelops;
   }
 }
 
@@ -183,8 +353,8 @@ function nodeTooltip(n) {
     : n.type === 'company'
       ? (n.status === 'absorbed' ? '企業（買収・統合済み）' : '企業')
       : 'プラグイン';
-  return `<div style="font:12px/1.5 system-ui,sans-serif;background:rgba(13,13,13,0.9);border:1px solid rgba(255,255,255,0.15);padding:6px 10px;border-radius:6px;color:#fff">
-    <strong>${escapeHtml(n.name)}</strong><br><span style="color:#c3c2b7">${escapeHtml(sub)}</span>
+  return `<div style="font:12px/1.5 system-ui,sans-serif;background:rgba(5,6,10,0.88);border:1px solid rgba(255,255,255,0.14);padding:6px 10px;border-radius:6px;color:#fff;letter-spacing:0.02em">
+    <strong>${escapeHtml(n.name)}</strong><br><span style="color:#9fa8b5">${escapeHtml(sub)}</span>
   </div>`;
 }
 
@@ -195,33 +365,26 @@ function developerName(softwareNode) {
   return dev ? dev.name : null;
 }
 
-// ---------- render (year + tag filter -> graphData) ----------
+// ---------- render ----------
 function render() {
   const data = state.data;
   const year = state.year;
 
   const nodes = data.nodes.filter(n => nodeVisible(n, year));
   const visibleIds = new Set(nodes.map(n => n.id));
-  // clone from the pristine list every time: 3d-force-graph mutates
-  // link.source/target in place, and re-filtering must start from plain ids.
   const links = data._linksPristine
     .filter(l => linkVisible(l, year, visibleIds))
     .map(l => ({ ...l }));
 
-  nodes.forEach(n => {
-    const style = styleForNode(n, year, data);
-    n.__color = style.color;
-    n.__val = style.val;
-  });
-
   Graph.graphData({ nodes, links });
+  applyStyles(nodes);
 }
 
 function nodeVisible(n, year) {
   if (n.appearYear != null && n.appearYear > year) return false;
   if (n.type === 'software') return state.activeTags.has(n.category);
   if (n.type === 'company') return state.activeTags.has('company');
-  return true; // plugin
+  return true;
 }
 
 function linkVisible(l, year, visibleIds) {
@@ -231,31 +394,14 @@ function linkVisible(l, year, visibleIds) {
   return true;
 }
 
-function styleForNode(n, year, data) {
-  if (n.type === 'software') {
-    return { color: data.category_colors[n.category] || '#3987e5', val: 3.2 };
-  }
-  if (n.type === 'plugin') {
-    return { color: data.plugin_color, val: 1.5 };
-  }
-  // company
-  if (n.status === 'absorbed') {
-    if (n.absorbedYear != null && year >= n.absorbedYear) {
-      return { color: data.absorbed_color, val: 1.6 };
-    }
-    return { color: '#8a8a80', val: 4.2 };
-  }
-  return { color: data.company_color, val: 6.2 };
-}
-
 // ---------- info panel ----------
 function handleNodeClick(node) {
-  const distance = 85;
+  const distance = 95;
   const distRatio = 1 + distance / Math.hypot(node.x || 1, node.y || 1, node.z || 1);
   Graph.cameraPosition(
     { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
     node,
-    900
+    1100
   );
   showInfo(node);
 }
@@ -347,29 +493,21 @@ els.chips.forEach(chip => {
 });
 
 els.playBtn.addEventListener('click', () => {
-  if (state.playing) {
-    stopPlay();
-  } else {
-    startPlay();
-  }
+  if (state.playing) stopPlay();
+  else startPlay();
 });
 
 function startPlay() {
   state.playing = true;
   els.playBtn.textContent = '⏸';
-  if (state.year >= state.yearMax) {
-    state.year = state.yearMin;
-  }
+  if (state.year >= state.yearMax) state.year = state.yearMin;
   state.playTimer = setInterval(() => {
     state.year += 1;
-    if (state.year > state.yearMax) {
-      stopPlay();
-      return;
-    }
+    if (state.year > state.yearMax) { stopPlay(); return; }
     els.slider.value = state.year;
     els.yearLabel.textContent = state.year;
     render();
-  }, 450);
+  }, 500);
 }
 
 function stopPlay() {
@@ -378,8 +516,6 @@ function stopPlay() {
   clearInterval(state.playTimer);
 }
 
-els.infoToggle.addEventListener('click', () => {
-  els.aboutPanel.classList.toggle('hidden');
-});
+els.infoToggle.addEventListener('click', () => els.aboutPanel.classList.toggle('hidden'));
 els.aboutClose.addEventListener('click', () => els.aboutPanel.classList.add('hidden'));
 els.infoClose.addEventListener('click', closeInfo);
